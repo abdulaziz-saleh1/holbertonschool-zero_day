@@ -68,27 +68,31 @@ Pipe commands into the shell:
 echo "pwd" | ./hsh
 
 🚧 Project Structure (Behind the Magic)
-.
-├── 📂 builtins/
-│   ├── builtins.c (exit, cd, help)
-│   └── builtins2.c (alias, history)
-├── 📂 env/
-│   ├── env.c
-│   └── environ.c
-├── 📂 core/
-│   ├── shell.c (main shell loop)
-│   └── parser.c (command parsing, PATH lookup)
-├── 📂 utils/
-│   ├── utils.c (string manipulation & utilities)
-│   ├── tokenizer.c (tokenizes commands)
-│   └── input.c (input handling & signals)
-├── 📂 memory/
-│   ├── info.c (memory management)
-│   └── history.c (command history)
-├── 📂 vars/
-│   └── vars.c (variable replacement logic)
-├── 📄 shell.h (definitions and prototypes)
-└── 📜 man_1_simple_shell (manual page)
+```
+📂 Project Structure
+├── 📁 builtins/
+│   ├── builtins.c       ──› handles: exit, cd, help
+│   └── builtins2.c      ──› handles: alias, history
+│
+├── 📁 env/
+│   ├── env.c            ──› environment-related utils
+│   └── environ.c        ──› handles getenv, setenv, unsetenv
+│
+├── 📁 core/
+│   ├── shell.c          ──› main shell loop
+│   ├── parser.c         ──› command parsing + PATH resolution
+│   ├── input.c          ──› input reading + signal handling
+│   └── info.c           ──› memory management for context info
+│
+├── 📁 utils/
+│   ├── utils.c          ──› common helper functions (strlen, atoi...)
+│   ├── tokenizer.c      ──› splits input line into tokens
+│   └── vars.c           ──› variable replacement logic
+│
+├── history.c            ──› command history system
+├── shell.h              ──› function prototypes & macros
+├── man_1_simple_shell   ──› manual page (man ./man_1_simple_shell)
+```
 
 📖 Manual Page (Unix style!)
 man ./man_1_simple_shell
