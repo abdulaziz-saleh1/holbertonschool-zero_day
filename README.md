@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/Simple_Shell-ALX_Holberton-blue?style=for-the-badge&logo=gnu-bash" alt="Simple Shell">
+  <img src="https://img.shields.io/badge/Simple_Shell-_Holberton-blue?style=for-the-badge&logo=gnu-bash" alt="Simple Shell">
   <br><br>
   <img src="https://media.giphy.com/media/WoWm8YzFQJg5i/giphy.gif" width="300">
 </p>
