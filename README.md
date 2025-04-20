@@ -40,7 +40,7 @@ Unix shells have powered tech for decades. This isn't just any shell—it's your
 
 
 ✨ $ cd /usr/bin
-✨ $ alias greet='echo Hello, ALX!'
+✨ $ alias greet='echo Hello, holberton!'
 ✨ $ greet
 
 
@@ -50,7 +50,7 @@ Unix shells have powered tech for decades. This isn't just any shell—it's your
 
 ✨ $ history
 1 cd /usr/bin
-2 alias greet='echo Hello, ALX!'
+2 alias greet='echo Hello, Holberton!'
 3 greet
 4 setenv MY_VAR "Holberton"
 5 echo $MY_VAR
@@ -114,7 +114,7 @@ man ./man_1_simple_shell
 
 ✅ Manual tests covering edge cases
 
-✅ ALX compliance (gcc -Wall -Werror -Wextra -pedantic -std=gnu89)
+✅ Holberton compliance (gcc -Wall -Werror -Wextra -pedantic -std=gnu89)
 
 🙌 Authors & Contributors
 Built with ❤️ & caffeine by:
