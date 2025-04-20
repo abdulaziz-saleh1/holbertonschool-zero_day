@@ -38,7 +38,7 @@ Unix shells have powered tech for decades. This isn't just any shell—it's your
 
 ## 🧩 Built-ins & Examples
 
-```bash
+
 ✨ $ cd /usr/bin
 ✨ $ alias greet='echo Hello, ALX!'
 ✨ $ greet
@@ -46,7 +46,7 @@ Unix shells have powered tech for decades. This isn't just any shell—it's your
 
 ✨ $ setenv MY_VAR "Holberton"
 ✨ $ echo $MY_VAR
-Holberton
+
 
 ✨ $ history
 1 cd /usr/bin
