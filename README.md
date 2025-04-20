@@ -42,7 +42,7 @@ Unix shells have powered tech for decades. This isn't just any shell—it's your
 ✨ $ cd /usr/bin
 ✨ $ alias greet='echo Hello, ALX!'
 ✨ $ greet
-Hello, ALX!
+
 
 ✨ $ setenv MY_VAR "Holberton"
 ✨ $ echo $MY_VAR
