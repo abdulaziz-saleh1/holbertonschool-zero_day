@@ -14,112 +14,130 @@
 
 ---
 
-## 🌌 Why another Shell?
+## 🧠 Project Objectives
 
-Unix shells have powered tech for decades. This isn't just any shell—it's your shell. Handcrafted from scratch, using pure C and Linux syscalls. No shortcuts, no built-in libraries, no training wheels.
-
-
-
----
-
-## 🛠️ Hardcore Features
-
-- 🔥 Execute commands interactively and non-interactively.
-- 🔗 Command chaining: `&&`, `||`, `;`.
-- 🧬 Built-ins: `exit`, `env`, `cd`, `alias`, `setenv`, `unsetenv`, `history`, `help`.
-- 🧠 Variable replacement (`$?`, `$$`, `$VARIABLE`).
-- 🌎 Complete environment variable handling.
-- 📜 Persistent command history management.
-- 🦾 Bulletproof error handling and memory management.
-- 🚦 Signal handling (Ctrl+C interrupts).
-- ⚙️ No `system()` calls—pure `fork()`, `execve()`.
+By the end of this project, you will be able to:
+- Explain how a Unix shell works.
+- Distinguish between `pid` and `ppid`.
+- Implement system calls like `fork`, `execve`, `wait`, and more.
+- Parse and tokenize input commands.
+- Handle environment variables programmatically.
+- Execute processes and manage them.
+- Use file descriptors for redirections.
+- Understand PATH lookup.
+- Detect and handle EOF.
+- Appreciate the difference between library and system calls.
 
 ---
 
-## 🧩 Built-ins & Examples
+## 🛠️ Features
 
+- 🔥 **Interactive & Non-Interactive Mode**
+- 🧠 **Built-ins**: `exit`, `env`, `cd`, `setenv`, `unsetenv`, `alias`, `history`, `help`
+- 💡 **Variable Replacement**: `$?`, `$$`, `$VAR`
+- 📂 **Environment Handling**: getenv, setenv, unsetenv
+- 🧮 **Command History**: Save and display previous commands
+- 🔗 **Command Chaining**: `&&`, `||`, `;`
+- 🧠 **Memory-Safe**: Valgrind tested
+- 🚦 **Signal Handling**: Ctrl+C interrupt
+- ⚙️ **No `system()` calls** — only `fork`, `execve`, etc.
 
-✨ $ cd /usr/bin
-✨ $ alias greet='echo Hello, holberton!'
-✨ $ greet
+---
 
+## ✨ Built-ins Example
 
-✨ $ setenv MY_VAR "Holberton"
-✨ $ echo $MY_VAR
+```bash
+$ cd /usr/bin
+$ alias greet='echo Hello, ALX!'
+$ greet
+Hello, ALX!
 
+$ setenv MY_VAR "Holberton"
+$ echo $MY_VAR
+Holberton
 
-✨ $ history
+$ history
 1 cd /usr/bin
-2 alias greet='echo Hello, Holberton!'
+2 alias greet='echo Hello, ALX!'
 3 greet
 4 setenv MY_VAR "Holberton"
 5 echo $MY_VAR
 
-✨ $ help
-✨ $ exit
+$ help
+$ exit
+```
 
-🌟 Quick Demo
-Run commands directly:
+### 🧪 Testing Examples
+```bash
+# Interactive mode
 ./hsh
-$ ls -la
-$ echo "Unix Wizardry"
+($) /bin/ls
+($) exit
 
-Pipe commands into the shell:
-echo "pwd" | ./hsh
-
-🚧 Project Structure (Behind the Magic)
-```
-📂 Project Structure
-├── 📁 builtins/
-│   ├── builtins.c       ──› handles: exit, cd, help
-│   └── builtins2.c      ──› handles: alias, history
-│
-├── 📁 env/
-│   ├── env.c            ──› environment-related utils
-│   └── environ.c        ──› handles getenv, setenv, unsetenv
-│
-├── 📁 core/
-│   ├── shell.c          ──› main shell loop
-│   ├── parser.c         ──› command parsing + PATH resolution
-│   ├── input.c          ──› input reading + signal handling
-│   └── info.c           ──› memory management for context info
-│
-├── 📁 utils/
-│   ├── utils.c          ──› common helper functions (strlen, atoi...)
-│   ├── tokenizer.c      ──› splits input line into tokens
-│   └── vars.c           ──› variable replacement logic
-│
-├── history.c            ──› command history system
-├── shell.h              ──› function prototypes & macros
-├── man_1_simple_shell   ──› manual page (man ./man_1_simple_shell)
+# Non-interactive
+echo "/bin/ls" | ./hsh
+cat commands.txt | ./hsh
 ```
 
-📖 Manual Page (Unix style!)
+---
 
-man ./man_1_simple_shell
+## 🗃️ File Structure
+```
+📁 simple_shell
+├── 📁 builtins
+│   ├── builtins.c       → handles exit, cd, help
+│   └── builtins2.c      → handles alias, history
+├── 📁 env
+│   ├── env.c            → env handlers
+│   └── environ.c        → custom getenv, setenv, unsetenv
+├── 📁 core
+│   ├── shell.c          → main shell loop
+│   ├── parser.c         → tokenizing, PATH resolution
+│   ├── input.c          → reading lines, signals
+│   └── info.c           → struct & memory mgmt
+├── 📁 utils
+│   ├── utils.c          → helpers (strlen, isalpha, etc)
+│   ├── tokenizer.c      → string split logic
+│   └── vars.c           → variable logic
+├── history.c            → handles command history
+├── shell.h              → prototypes, macros, struct
+├── man_1_simple_shell   → manual page (type `man ./man_1_simple_shell`)
+```
 
-💡 Design Choices (Why it's awesome)
-💪 Efficiency: Direct Linux syscalls, avoiding overhead.
+---
 
-🦅 Portability: Runs smoothly on any Unix-based OS.
+## 🧪 Testing & Requirements
 
-🔥 Control: No external libs—every byte is yours.
+✅ **Memory Leak-Free**: Checked with Valgrind  
+✅ **Complies with Holberton Style**: `gcc -Wall -Werror -Wextra -pedantic -std=gnu89`  
+✅ **Manual & Automated Testing**: Interactive and pipe input modes
 
-🛡️ Robustness: Meticulously checked with Valgrind—no leaks.
+### 📜 Manual Page
+Run: `man ./man_1_simple_shell`
 
-🌠 Extensible: Easy to add your custom built-ins and commands.
+---
 
-🎯 Tests & Validation
-✅ Valgrind leak-free certification
+## 💻 Requirements
+- Ubuntu 20.04 LTS
+- No memory leaks (Valgrind must pass)
+- 5 functions max per file
+- Betty style & documentation
+- Use only allowed system calls
 
-✅ Manual tests covering edge cases
+---
 
-✅ Holberton compliance (gcc -Wall -Werror -Wextra -pedantic -std=gnu89)
+## 📚 System Calls Used
+`access`, `chdir`, `close`, `execve`, `exit`, `_exit`, `fflush`, `fork`, `free`, `getcwd`, `getline`, `getpid`, `isatty`, `kill`, `malloc`, `open`, `opendir`, `perror`, `printf`, `fprintf`, `read`, `readdir`, `signal`, `stat`, `lstat`, `fstat`, `strtok`, `wait`, `waitpid`, `wait3`, `wait4`, `write`
 
-🙌 Authors & Contributors
-Built with ❤️ & caffeine by:
+---
 
-Muhannad — @Muhannad-09
-Abdulaziz - @Abdulaziz-Saleh1
+## 🙌 Authors
+- **Muhannad** — [@Muhannad-09](https://github.com/Muhannad-09)
+- **Abdulaziz** — [@Abdulaziz-Saleh1](https://github.com/Abdulaziz-Saleh1)
 
-<p align="center"> <strong>💻 Code. 🧠 Learn. 🚀 Conquer.</strong> <br><br> <img src="https://media.giphy.com/media/QTfX9Ejfra3ZmNxh6B/giphy.gif" width="200"> </p> ```
+<p align="center">
+  <strong>💻 Code. 🧠 Learn. 🚀 Conquer.</strong>
+  <br><br>
+  <img src="https://media.giphy.com/media/QTfX9Ejfra3ZmNxh6B/giphy.gif" width="200">
+</p>
+
